@@ -6,9 +6,15 @@
 // @author       Manyu Lakhotia
 // @match        https://*/*
 // @icon         s
-// @grant        none
+// @grant        GM_addStyle
+// @grant  GM_getResourceText
 // ==/UserScript==
 
+/**
+ *
+ * deprecated in favor of using GM_addStyle
+ *
+ */
 function addGlobalStyle(css) {
     var head, style;
     head = document.getElementsByTagName('head')[0];
@@ -187,11 +193,12 @@ const onClickSubmitShowSpinner = function (spinnerId) {
 
 (function() {
   'use strict';
-  // addGlobalStyle('body { background-color: red !important; }');
-  // addGlobalStyle('h1 { background-color: red !important; }');
-  addGlobalStyle('.dots-bars-4 { width: 40px; height: 20px; --c:radial-gradient(farthest-side,currentColor 93%,#0000); background: var(--c) 0    0, var(--c) 50%  0, var(--c) 100% 0; background-size:8px 8px; background-repeat: no-repeat; position: relative; animation: db4-0 1s linear infinite alternate; }');
-  addGlobalStyle('.dots-bars-4:before { content: ""; position: absolute; width: 8px; height: 12px; background:currentColor; left:0; top:0; animation: db4-1 1s  linear infinite alternate, db4-2 0.5s cubic-bezier(0,200,.8,200) infinite; }');
-  addGlobalStyle(`
+  // GM_addStyle('body { background-color: red !important; }');
+  // GM_addStyle('h1 { background-color: red !important; }');
+  GM_addStyle('h1 { background-color: red !important; }');
+  GM_addStyle('.dots-bars-4 { width: 40px; height: 20px; --c:radial-gradient(farthest-side,currentColor 93%,#0000); background: var(--c) 0    0, var(--c) 50%  0, var(--c) 100% 0; background-size:8px 8px; background-repeat: no-repeat; position: relative; animation: db4-0 1s linear infinite alternate; }');
+  GM_addStyle('.dots-bars-4:before { content: ""; position: absolute; width: 8px; height: 12px; background:currentColor; left:0; top:0; animation: db4-1 1s  linear infinite alternate, db4-2 0.5s cubic-bezier(0,200,.8,200) infinite; }');
+  GM_addStyle(`
 @keyframes db4-0 {
   0%      {background-position: 0  100%,50% 0   ,100% 0}
   8%,42%  {background-position: 0  0   ,50% 0   ,100% 0}
@@ -200,12 +207,12 @@ const onClickSubmitShowSpinner = function (spinnerId) {
   100%    {background-position: 0  0   ,50% 0   ,100% 100%}
 }
   `);
-  addGlobalStyle(`
+  GM_addStyle(`
 @keyframes db4-1 {
   100% {left:calc(100% - 8px)}
 }
 `);
-  addGlobalStyle(`
+  GM_addStyle(`
 @keyframes db4-2 {
   100% {top:-0.1px}
 }

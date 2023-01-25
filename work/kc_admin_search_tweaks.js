@@ -17,35 +17,42 @@ function ready(callback) {
   else if (document.addEventListener) document.addEventListener('DOMContentLoaded', callback);
 }
 
-function onEleStateChange(doOnNotReady, doOnReady, isEleReadPred) {
-  let asNotReadyCallBackSuccess = false;
+function onStateChange(doOnNotReady, doOnReady, isReadyPred) {
+  let isNotReadyCallBackSuccess = false;
   let intervalId = window.setInterval(function () {
-    const isEleReady = isEleReadPred.call(this);
-    if (isEleReady) {
+    const isReady = isReadyPred.call(this);
+    if (isReady) {
       doOnReady.call(this);
       window.clearInterval(intervalId);
     } else {
-      if (!asNotReadyCallBackSuccess) {
-        asNotReadyCallBackSuccess = doOnNotReady.call(this);
+      if (!isNotReadyCallBackSuccess) {
+        isNotReadyCallBackSuccess = doOnNotReady.call(this);
       }
     }
   }, 500);
+}
+
+function getSearchBtn() {
+  return document.querySelector('button[aria-label="Search"]');
 }
 
 function getInputBox() {
   return document.querySelector('input[name="search-input"]');
 }
 
+function elesThatMustExist() {
+  return getInputBox() && getSearchBtn();
+}
+
 function guts() {
-  onEleStateChange(function () {
+  onStateChange(function () {
     return true;
   }, function () {
     const input = getInputBox();
     input.value = '*';
-  },
-    function () {
-      return getInputBox();
-    }
+    const search = getSearchBtn();
+    search.focus();
+  }, getInputBox
   );
 }
 

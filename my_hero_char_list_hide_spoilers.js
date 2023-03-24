@@ -9,16 +9,23 @@
 // @grant        none
 // ==/UserScript==
 
-function hide(eles) {
+function changeText(eles, textChange) {
   for (const ele of eles) {
-    ele.setAttribute('hidden', true);
+    ele.innerText = textChange(ele);
+    // ele.setAttribute('hidden', true);
   }
+}
+
+function removeSpoiler(ele) {
+  return ele.innerText.replace(new RegExp('Former|Retired|Deceased|Arrested', 'i'), '');
 }
 
 (function () {
   'use strict';
   const subcaptions = document.getElementsByClassName('chargallery-profile-subcaption');
-  hide(subcaptions);
+  // const x = document.getElementById('chargallery-profile-subcaption');
+  // x.innerText
+  changeText(subcaptions, removeSpoiler);
   const headers = document.getElementsByClassName('customheader');
-  hide(headers);
+  changeText(headers, removeSpoiler);
 })();

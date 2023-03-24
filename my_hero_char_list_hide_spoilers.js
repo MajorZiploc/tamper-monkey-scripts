@@ -12,7 +12,6 @@
 function changeText(eles, textChange) {
   for (const ele of eles) {
     ele.innerText = textChange(ele);
-    // ele.setAttribute('hidden', true);
   }
 }
 
@@ -23,8 +22,6 @@ function removeSpoiler(ele) {
 (function () {
   'use strict';
   const subcaptions = document.getElementsByClassName('chargallery-profile-subcaption');
-  // const x = document.getElementById('chargallery-profile-subcaption');
-  // x.innerText
   changeText(subcaptions, removeSpoiler);
   const headers = document.getElementsByClassName('customheader');
   changeText(headers, removeSpoiler);

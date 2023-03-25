@@ -9,10 +9,8 @@
 // @grant        none
 // ==/UserScript==
 
-function changeText(eles, textChange) {
-  for (const ele of eles) {
-    ele.innerText = textChange(ele);
-  }
+function changeText(ele, textChange) {
+  ele.innerText = textChange(ele);
 }
 
 function removeSpoiler(ele) {
@@ -21,10 +19,9 @@ function removeSpoiler(ele) {
 
 (function () {
   'use strict';
-  [
-    document.getElementsByClassName('chargallery-profile-subcaption'),
-    document.getElementsByClassName('customheader')
-  ].forEach(domEles => {
-    changeText(domEles, removeSpoiler);
-  });
+  const domEles = [
+    ...document.getElementsByClassName('chargallery-profile-subcaption'),
+    ...document.getElementsByClassName('customheader'),
+  ];
+  domEles.forEach(domEle => changeText(domEle, removeSpoiler));
 })();

@@ -21,8 +21,10 @@ function removeSpoiler(ele) {
 
 (function () {
   'use strict';
-  const subcaptions = document.getElementsByClassName('chargallery-profile-subcaption');
-  changeText(subcaptions, removeSpoiler);
-  const headers = document.getElementsByClassName('customheader');
-  changeText(headers, removeSpoiler);
+  [
+    document.getElementsByClassName('chargallery-profile-subcaption'),
+    document.getElementsByClassName('customheader')
+  ].forEach(domEles => {
+    changeText(domEles, removeSpoiler);
+  });
 })();

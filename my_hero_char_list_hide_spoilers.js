@@ -14,7 +14,7 @@ function changeText(ele, textChange) {
 }
 
 function removeSpoiler(ele) {
-  return ele.innerText.replace(new RegExp('Former|Retired|Deceased|Arrested|Defected|Inactive', 'i'), '');
+  return ele.innerText.replace(new RegExp('Former|Retired|Deceased|Arrested|Defected|Inactive|Active', 'i'), '');
 }
 
 (function () {
